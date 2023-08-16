@@ -78,7 +78,7 @@ function getDataandTime(){
 //saving it to the memorie
 function saveInfo(item){
   var saveItens = JSON.parse(localStorage.getItem('listItems')) || [];
-  savedItens.push(item);
+  saveItens.push(item);
   localStorage.setItem('listItens', JSON.stringify(savedItens));
 }
 
