@@ -87,7 +87,7 @@ function saveInfo(item){
 window.onload = function(){
   var saveItens = JSON.parse(localStorage.getItem('listItens')) || [];
   var ul = document.getElementById('ul')
-  for (var i = 0; i < saveItens.length; i++){
+  for (var l = 0; l < saveItens.length; l++){
     var li = document.createElement('li');
     li.appendChild(document.createTextNode(saveItens[i]));
     ul.appendChild(li);
