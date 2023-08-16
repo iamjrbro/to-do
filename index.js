@@ -68,12 +68,6 @@ document.getElementById('firstInput').addEventListener('keyup', function(event){
 
 
 //getting date and time
-
-
-/*In the above code, I've added a new function getCurrentDateAndTime that returns the current date and time in a formatted string. I've modified the newElement function to use this formatted date and time along with the user's input when creating a new list item. Additionally, I've added an event listener to the input field to trigger the newElement function when the Enter key is pressed.
-
-Please note that this code assumes you have an HTML input element with the ID "firstInput" for the user to enter new items. Also, make sure you have an element with the ID "ul" for appending the new list items. You may need to adjust the IDs and HTML structure accordingly.*/
-
 function getDataandTime(){
   var now = new Date();
   var options = {weekday: 'long', year: 'numeric', month:'long', day: 'numeric', hour:'2-digit', minute:'2-digit',};
@@ -99,10 +93,3 @@ window.onload = function(){
     ul.appendChild(li);
   }
 }
-
-
-
-
-/*In this code, the saveToList function takes care of adding a new item to the local storage. The window.onload function is used to load the saved items from local storage and populate the list when the page loads.
-
-Remember to adjust your HTML structure accordingly and ensure that you have an element with the ID "ul" for appending the list items.*/
