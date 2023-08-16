@@ -1,5 +1,4 @@
 # to-do
-<>h1>To-Do</h1>
 
 Lista To-Do simples para fins de aprendizagem, feita com JavaScript, HTML e CSS, e hospedada no github.io.
 
