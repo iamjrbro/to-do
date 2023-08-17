@@ -82,8 +82,6 @@ function saveInfo(item){
   localStorage.setItem('listItens', JSON.stringify(savedItens));
 }
 
-saveInfo()
-
 
 //loading all saved itens from the store page when it loads
 window.onload = function(){
@@ -94,5 +92,5 @@ window.onload = function(){
     li.appendChild(document.createTextNode(saveItens[i]));
     ul.appendChild(li);
   }
-
+  saveInfo()
 }
