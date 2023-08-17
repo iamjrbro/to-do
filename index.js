@@ -92,5 +92,6 @@ window.onload = function(){
     li.appendChild(document.createTextNode(saveItens[i]));
     ul.appendChild(li);
   }
-  saveInfo(saveItens)
 }
+
+saveInfo(saveItens)
