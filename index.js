@@ -1,6 +1,7 @@
 // creating the close button and append it to each list item
 var list = document.getElementsByTagName("LI");
-for (var l = 0; l < list.length; l++) {
+var l;
+for (l = 0; l < list.length; l++) {
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
   span.className = "close";
@@ -8,16 +9,19 @@ for (var l = 0; l < list.length; l++) {
   list[l].appendChild(span);
 }
 
-// Clicking on a close button to hide the current list item
+
+// clicking on a close button to hide the current list item
 var close = document.getElementsByClassName("close");
-for (var l = 0; l < close.length; l++) {
+var l;
+for (l = 0; l < close.length; l++) {
   close[l].onclick = function() {
     var div = this.parentElement;
     div.style.display = "none";
-  };
+  }
 }
 
-// Adding a checked symbol when clicking on a list item
+
+// adding a checked symbol when clicking on a list item
 var list = document.querySelector('ul');
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
@@ -25,33 +29,10 @@ list.addEventListener('click', function(ev) {
   }
 }, false);
 
-// Getting date and time
-function getDataAndTime() {
-  var now = new Date();
-  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-  return now.toLocaleDateString('pt-BR', options);
-}
 
-// Saving item to local storage
-function saveInfo(item) {
-  var savedItems = JSON.parse(localStorage.getItem('listItems')) || [];
-  savedItems.push(item);
-  localStorage.setItem('listItems', JSON.stringify(savedItems));
-}
-
-// Loading all saved items from local storage when the page loads
-window.onload = function() {
-  var savedItems = JSON.parse(localStorage.getItem('listItems')) || [];
-  var ul = document.getElementById('ul');
-  for (var i = 0; i < savedItems.length; i++) {
-    var li = document.createElement('li');
-    li.appendChild(document.createTextNode(savedItems[i]));
-    ul.appendChild(li);
-  }
-};
-
-// Creating a new list item when clicking on the "add" button or pressing Enter
+// creating a new list item when clicking on the "add" button
 function newElement() {
+
   var li = document.createElement("li");
   var inputValue = document.getElementById("firstInput").value;
   var t = document.createTextNode(inputValue);
@@ -60,9 +41,8 @@ function newElement() {
     alert("You must write something!");
   } else {
     document.getElementById("ul").appendChild(li);
-    saveInfo(inputValue); // Save the new item to local storage
   }
-  document.getElementById("firstInput").value = "";
+  document.getElementById("ul").value = "";
 
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
@@ -70,15 +50,46 @@ function newElement() {
   span.appendChild(txt);
   li.appendChild(span);
 
-  span.onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  };
+  for (l = 0; l < close.length; l++) {
+    close[l].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
 }
 
-// Creating a new list item when pressing Enter in the input field
-document.getElementById('firstInput').addEventListener('keyup', function(event) {
-  if (event.key === 'Enter') {
+//creating a new list item when clicking a new element
+document.getElementById('firstInput').addEventListener('keyup', function(event){
+  if(event.key === 'Enter'){
     newElement();
   }
 });
+
+
+//getting date and time
+function getDataandTime(){
+  var now = new Date();
+  var options = {weekday: 'long', year: 'numeric', month:'long', day: 'numeric', hour:'2-digit', minute:'2-digit',};
+  return now.toLocaleDateString('pt-BR', options)
+}
+
+
+//saving it to the memory
+function saveInfo(item){
+  var saveItens = JSON.parse(localStorage.getItem('listItems')) || [];
+  saveItens.push(item);
+  localStorage.setItem('listItens', JSON.stringify(savedItens));
+}
+
+
+//loading all saved itens from the store page when it loads
+window.onload = function(){
+  var saveItens = JSON.parse(localStorage.getItem('listItens')) || [];
+  var ul = document.getElementById('ul')
+  for (var l = 0; l < saveItens.length; l++){
+    var li = document.createElement('li');
+    li.appendChild(document.createTextNode(saveItens[i]));
+    ul.appendChild(li);
+  }
+}
+
