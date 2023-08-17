@@ -57,7 +57,7 @@ function newElement() {
     }
   }
 }
-
+saveInfo(saveItens)
 
 //creating a new list item when clicking a new element
 document.getElementById('firstInput').addEventListener('keyup', function(event){
