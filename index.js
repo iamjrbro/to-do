@@ -90,5 +90,6 @@ window.onload = function(){
     var li = document.createElement('li');
     li.appendChild(document.createTextNode(saveItens[i]));
     ul.appendChild(li);
+    saveInfo()
   }
 }
