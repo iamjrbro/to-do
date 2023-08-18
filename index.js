@@ -78,7 +78,7 @@ function getDataandTime(){
 function saveInfo(item){
   var saveItens = JSON.parse(localStorage.getItem('listItems')) || [];
   saveItens.push(item);
-  localStorage.setItem('listItens', JSON.stringify(savedItens));
+  localStorage.setItem('listItens', JSON.stringify(saveItens));
 }
 
 
@@ -92,4 +92,3 @@ window.onload = function(){
     ul.appendChild(li);
   }
 }
-
