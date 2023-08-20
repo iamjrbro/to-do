@@ -22,7 +22,7 @@ for (l = 0; l < close.length; l++) {
 
 
 // adding a checked symbol when clicking on a list item
-var list = document.querySelector('ul');
+var list = document.getElementById('ul');
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');
@@ -41,8 +41,8 @@ function newElement() {
     alert("You must write something!");
   } else {
     document.getElementById("ul").appendChild(li);
+    saveInfo(inputValue)
   }
-  document.getElementById("ul").value = "";
 
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
@@ -78,18 +78,16 @@ function getDataandTime(){
 function saveInfo(item){
   var saveItens = JSON.parse(localStorage.getItem('listItems')) || [];
   saveItens.push(item);
-  localStorage.setItem('listItens', JSON.stringify(saveItens));
+  localStorage.setItem('listItems', JSON.stringify(saveItens));
 }
-
 
 //loading all saved itens from the store page when it loads
 window.onload = function(){
-  var saveItens = JSON.parse(localStorage.getItem('listItens')) || [];
+  var saveItens = JSON.parse(localStorage.getItem('listItems')) || [];
   var ul = document.getElementById('ul')
-  for (var l = 0; l < saveItens.length; l++){
+  for (var i = 0; i < saveItens.length; i++){
     var li = document.createElement('li');
     li.appendChild(document.createTextNode(saveItens[i]));
     ul.appendChild(li);
-    saveInfo()
   }
 }
