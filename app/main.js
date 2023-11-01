@@ -1,7 +1,8 @@
-// creating the close button and append it to each list item
+// Selecionando todos os elementos LI
 var list = document.getElementsByTagName("LI");
-var l;
-for (l = 0; l < list.length; l++) {
+
+// Adicionando um botão de fechar a cada item da lista
+for (var l = 0; l < list.length; l++) {
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
   span.className = "close";
@@ -9,86 +10,80 @@ for (l = 0; l < list.length; l++) {
   list[l].appendChild(span);
 }
 
-
-// clicking on a close button to hide the current list item
+// Adicionando a funcionalidade de fechar ao botão
 var close = document.getElementsByClassName("close");
-var l;
-for (l = 0; l < close.length; l++) {
+for (var l = 0; l < close.length; l++) {
   close[l].onclick = function() {
     var div = this.parentElement;
     div.style.display = "none";
-  }
+  };
 }
 
-
-// adding a checked symbol when clicking on a list item
-var list = document.getElementById('ul');
-list.addEventListener('click', function(ev) {
+// Adicionando a funcionalidade de marcação ao clicar em um item da lista
+var ul = document.getElementById('ul');
+ul.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');
   }
 }, false);
 
-
-// creating a new list item when clicking on the "add" button
+// Adicionando um novo item à lista ao clicar no botão "Add"
 function newElement() {
-
   var li = document.createElement("li");
   var inputValue = document.getElementById("firstInput").value;
   var t = document.createTextNode(inputValue);
   li.appendChild(t);
+
   if (inputValue === '') {
-    alert("You must write something!");
+    alert("Você deve escrever algo!");
   } else {
     document.getElementById("ul").appendChild(li);
-    saveInfo(inputValue)
+    saveInfo(inputValue);
   }
 
+  // Adicionando o botão de fechar ao novo item
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
   span.className = "close";
   span.appendChild(txt);
   li.appendChild(span);
 
-  for (l = 0; l < close.length; l++) {
-    close[l].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
+  // Adicionando a funcionalidade de fechar ao novo botão de fechar
+  span.onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  };
 }
 
-//creating a new list item when clicking a new element
+// Adicionando um novo item à lista ao pressionar Enter
 document.getElementById('firstInput').addEventListener('keyup', function(event){
   if(event.key === 'Enter'){
     newElement();
   }
 });
 
-
-//getting date and time
-function getDataandTime(){
+// Obtendo a data e hora
+function getDataandTime() {
   var now = new Date();
-  var options = {weekday: 'long', year: 'numeric', month:'long', day: 'numeric', hour:'2-digit', minute:'2-digit',};
-  return now.toLocaleDateString('pt-BR', options)
+  var options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'};
+  return now.toLocaleDateString('pt-BR', options);
 }
 
-
-//saving it to the memory
-function saveInfo(item){
-  var saveItens = JSON.parse(localStorage.getItem('listItems')) || [];
-  saveItens.push(item);
-  localStorage.setItem('listItems', JSON.stringify(saveItens));
+// Salvando informações na memória
+function saveInfo(item) {
+  var saveItems = JSON.parse(localStorage.getItem('listItems')) || [];
+  saveItems.push(item);
+  localStorage.setItem('listItems', JSON.stringify(saveItems));
 }
-saveInfo();
 
-//loading all saved itens from the store page when it loads
+// Carregando todos os itens salvos da memória ao carregar a página
 window.onload = function(){
-  var saveItens = JSON.parse(localStorage.getItem('listItems')) || [];
-  var ul = document.getElementById('ul')
-  for (var i = 0; i < saveItens.length; i++){
+  var savedItems = JSON.parse(localStorage.getItem('listItems')) || [];
+  var ul = document.getElementById('ul');
+  for (var i = 0; i < savedItems.length; i++){
     var li = document.createElement('li');
-    li.appendChild(document.createTextNode(saveItens[i]));
+    li.appendChild(document.createTextNode(savedItems[i]));
     ul.appendChild(li);
   }
 }
+
