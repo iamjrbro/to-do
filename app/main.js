@@ -80,6 +80,7 @@ function saveInfo(item){
   saveItens.push(item);
   localStorage.setItem('listItems', JSON.stringify(saveItens));
 }
+saveInfo();
 
 //loading all saved itens from the store page when it loads
 window.onload = function(){
